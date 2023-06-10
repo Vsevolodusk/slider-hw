@@ -1,0 +1,29 @@
+.btn{
+  height: clamp(20px , 7vw , 60px);
+  width: clamp(20px , 7vw , 60px);
+  position: absolute;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: clamp(1.5rem , 4vw , 2.4rem);
+  display: grid;
+  place-content: center;
+  background-color: #5367F8;
+  color: #fff;
+  transition: 0.5s all linear;
+}
+.btn:hover{
+  background-color: #fff;
+  color: #5367F8;
+}
+.btn:active{
+  background-color: #25d139;
+}
+.back{
+  left: 20px;
+  top: calc(50% - 35px);
+}
+.forward{
+  right: 20px;
+  top: calc(50% - 35px);
+}

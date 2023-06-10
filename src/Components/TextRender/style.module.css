@@ -1,0 +1,6 @@
+.sliderTitle{
+  font-size: clamp(1.5rem , 3vw , 4rem)
+}
+.sliderText{
+  font-size: clamp(1.2rem , 1vw , 2rem);
+}
