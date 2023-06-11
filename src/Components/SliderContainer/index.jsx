@@ -58,7 +58,7 @@ class SliderContainer extends Component {
   };
 
   render() {
-    const { sliderData, counter , intervalTime } = this.state;
+    const { sliderData, counter } = this.state;
     return (
       <>
         <div className={styles.sliderContainer}>
