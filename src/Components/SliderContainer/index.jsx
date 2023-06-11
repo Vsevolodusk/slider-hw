@@ -11,8 +11,16 @@ class SliderContainer extends Component {
     this.state = {
       sliderData: sliderArray,
       counter: 0,
-      isStarted : false
+      intervalTime: 3000,
     };
+  }
+
+  componentDidMount() {
+    this.startAutoScroll();
+  }
+
+  componentWillUnmount() {
+    this.stopAutoScroll();
   }
 
   btnFwd = () => {
@@ -23,6 +31,8 @@ class SliderContainer extends Component {
     } else {
       this.setState({ counter: counter + 1 });
     }
+    this.stopAutoScroll();
+    this.startAutoScroll();
   };
   btnBck = () => {
     const { sliderData } = this.state;
@@ -32,18 +42,33 @@ class SliderContainer extends Component {
     } else {
       this.setState({ counter: counter - 1 });
     }
+    this.stopAutoScroll();
+    this.startAutoScroll();
   };
- 
+
+  startAutoScroll = () => {
+    const { intervalTime } = this.state;
+    this.timer = setInterval(() => {
+      this.btnFwd();
+    }, intervalTime);
+  };
+
+  stopAutoScroll = () => {
+    clearInterval(this.timer);
+  };
+
   render() {
-    const { sliderData, counter } = this.state;
+    const { sliderData, counter , intervalTime } = this.state;
     return (
-      <div className={styles.sliderContainer}>
-        <div className={styles.sliderImgContainer}>
-          <PhotoRender slideData={sliderData} counter={counter} />
-          <SliderButtons frwd={this.btnFwd} back={this.btnBck} />
+      <>
+        <div className={styles.sliderContainer}>
+          <div className={styles.sliderImgContainer}>
+            <PhotoRender slideData={sliderData} counter={counter} />
+            <SliderButtons frwd={this.btnFwd} back={this.btnBck} />
+          </div>
+          <TextRender slideData={sliderData} counter={counter} />
         </div>
-        <TextRender slideData={sliderData} counter={counter} />
-      </div>
+      </>
     );
   }
 }
